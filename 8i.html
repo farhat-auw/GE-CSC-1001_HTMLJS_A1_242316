@@ -2,28 +2,33 @@
 <html>
 <head>
   <title>8i</title>
-  <style>
-    .search-input {
-      width: 300px;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid gray;
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .search-button {
-      background-color: blue;
-      color: white;
-      padding: 10px;
-      border: none;
-      display: inline-block;
-      vertical-align: middle;
-    }
-  </style>
 </head>
 <body>
-  <input class="search-input" type="text" placeholder="Search">
-  <button class="search-button">Search</button>
+
+  <button onclick="playGame('heads');">heads</button>
+  <button onclick="playGame('tails');">tails</button>
+
+  <script>
+    function playGame(guess) {
+      // 1. Generate a random number between 0 and 1
+      const randomNumber = Math.random();
+
+      // 2. Determine the result based on the random number
+      let result = '';
+      if (randomNumber < 0.5) {
+        result = 'heads';
+      } else {
+        result = 'tails';
+      }
+
+      // 3. Compare the guess to the result and print to console
+      if (guess === result) {
+        console.log('You win!');
+      } else {
+        console.log('You lose!');
+      }
+    }
+  </script>
+
 </body>
 </html>
