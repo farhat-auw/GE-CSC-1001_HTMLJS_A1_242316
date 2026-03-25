@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>8i</title>
+</head>
+<body>
+
+  <button onclick="playGame('heads');">heads</button>
+  <button onclick="playGame('tails');">tails</button>
+
+  <script>
+    // 1. Load the score from localStorage when the page starts
+    // Use JSON.parse to turn the string back into an object
+    let score = JSON.parse(localStorage.getItem('score'));
+
+    // 2. If there is no score in localStorage (first time playing),
+    // initialize it with zeros.
+    if (!score) {
+      score = {
+        wins: 0,
+        losses: 0
+      };
+    }
+
+    function playGame(guess) {
+      const randomNumber = Math.random();
+      let result = '';
+
+      if (randomNumber < 0.5) {
+        result = 'heads';
+      } else {
+        result = 'tails';
+      }
+
+      if (guess === result) {
+        score.wins += 1;
+        console.log('You win!');
+      } else {
+        score.losses += 1;
+        console.log('You lose!');
+      }
+
+      // 3. Save the updated score to localStorage
+      // Use JSON.stringify to turn the object into a string
+      localStorage.setItem('score', JSON.stringify(score));
+
+      console.log(score);
+    }
+  </script>
+
+</body>
+</html>
